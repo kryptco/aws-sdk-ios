@@ -45,26 +45,22 @@ then
 fi
 
 # Build .a files
-xcodebuild ARCHS="armv7 armv7s arm64 i386 x86_64" \
+xcodebuild ARCHS="i386 x86_64" \
 	ONLY_ACTIVE_ARCH=NO \
 	-configuration Debug \
     -project "${project_path}/AWSiOSSDKv2.xcodeproj" \
     -target "${project_name}" \
     -sdk iphonesimulator \
-    SYMROOT=$(PWD)/builtFramework \
-    clean build
-
+    SYMROOT=$(PWD)/builtFramework
 exitOnFailureCode $?
 
-xcodebuild ARCHS="armv7 armv7s arm64 i386 x86_64" \
+xcodebuild ARCHS="armv7  arm64" \
 	ONLY_ACTIVE_ARCH=NO \
 	-configuration Release \
     -project "${project_path}/AWSiOSSDKv2.xcodeproj" \
     -target "${project_name}" \
     -sdk iphoneos \
-    SYMROOT=$(PWD)/builtFramework \
-    clean build
-
+    SYMROOT=$(PWD)/builtFramework
 exitOnFailureCode $?
 
 # This is the full name of the framework we'll
